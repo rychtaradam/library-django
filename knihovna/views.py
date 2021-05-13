@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from knihovna.models import Book, Genre, Author
+from knihovna.models import *
+
 
 def index(request):
     num_books = Book.objects.all().count()
