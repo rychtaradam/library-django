@@ -20,8 +20,14 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from knihovna import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('knihovna/', include('knihovna.urls')),
     path('', RedirectView.as_view(url='knihovna/')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('author/create/', views.AuthorCreate.as_view(), name='author-create'),
+    path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author-update'),
+    path('author/<int:pk>/delete/', views.AuthorDelete.as_view(), name='author-delete'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

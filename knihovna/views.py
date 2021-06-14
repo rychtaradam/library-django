@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from knihovna.models import *
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Author
 
 
 def index(request):
@@ -12,3 +15,18 @@ def index(request):
     }
 
     return render(request, 'index.html', context=context)
+
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = ['name']
+
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = '__all__'
+
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
