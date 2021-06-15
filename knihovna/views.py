@@ -29,16 +29,28 @@ class BookDetailView(generic.DetailView):
     context_object_name = "book"
 
 
-class AuthorCreate(CreateView):
+class AuthorListView(generic.ListView):
     model = Author
+    context_object_name = "author_list"
+    paginate_by = 10
+
+
+class GenresListView(generic.ListView):
+    model = Genre
+    context_object_name = "genre_list"
+    paginate_by = 10
+
+
+class BookCreate(CreateView):
+    model = Book
     fields = ['name']
 
 
-class AuthorUpdate(UpdateView):
-    model = Author
+class BookUpdate(UpdateView):
+    model = Book
     fields = '__all__'
 
 
-class AuthorDelete(DeleteView):
-    model = Author
-    success_url = reverse_lazy('authors')
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('books')

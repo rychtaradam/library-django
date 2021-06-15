@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Seznam žánrů v databázi</h1>
+  {% if genre_list %}
+  <ul>
+    {% for genre in genre_list %}
+      <li>
+          <b class="text-warning">{{ genre }}</b>
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endblock %}

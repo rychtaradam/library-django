@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Seznam autorů v databázi</h1>
+  {% if author_list %}
+  <ul>
+    {% for author in author_list %}
+      <li>
+          <b class="text-warning">{{ author }}</b>
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endblock %}
