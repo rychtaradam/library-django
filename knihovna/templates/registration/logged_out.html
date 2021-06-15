@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
+  <p>Odhlášen.</p>
+  <a class="btn bg-success" href="{% url 'login'%}">Znovu přihlásit.</a>
 {% endblock %}

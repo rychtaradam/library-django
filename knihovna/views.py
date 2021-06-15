@@ -21,6 +21,7 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
     context_object_name = "book_list"
+    paginate_by = 10
 
 
 class BookDetailView(generic.DetailView):

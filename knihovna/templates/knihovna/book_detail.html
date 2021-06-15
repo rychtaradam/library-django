@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.name }}</h1>
-
-  <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p>
+  <h1>{{ book.name }}</h1>
+{% for author in book.author.all %}
+  <p><strong>Autor:</strong> <a href="">{{ author }}</a></p>
+{% endfor %}
+  <p><strong>Žánr:</strong> {{ book.genre.all|join:", " }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-  <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
-  <p><strong>Pages:</strong> {{ book.pages }}</p>
+  <p><strong>Počet stran:</strong> {{ book.pages }}</p>
+  <p><strong>Datum vydání:</strong> {{ book.date }}</p>
+  <p><strong>Hodnocení:</strong> {{ book.rate }}</p>
 {% endblock %}

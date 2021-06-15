@@ -15,11 +15,12 @@
             {% endif %} 
             <div class="card-body"> 
                 <h4 class="card-title">{{ book.name }}</h4>
-                <p class="card-text"><strong>Žánry:</strong>  
-
+                <p class="card-text"><strong>Žánry:</strong>
                 {% for genre in book.genre.all %}{{ genre.name }}{% endfor %}
-
-                </p> 
+                </p>
+                <p class="card-text"><strong>Autor:</strong>
+                {% for author in book.author.all %}{{ author }}{% endfor %}
+                </p>
                 <p><strong>Hodnocení:</strong> {{ book.rate }}</p>
                 <a href="#" class="btn btn-primary">Podrobnosti</a> 
             </div> 
