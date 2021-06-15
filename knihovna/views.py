@@ -43,7 +43,8 @@ class GenresListView(generic.ListView):
 
 class BookCreate(CreateView):
     model = Book
-    fields = ['name']
+    fields = ['name', 'genre', 'author', 'date', 'pages', 'rate', 'isbn']
+    initial = {'date': '15/06/2020'}
 
 
 class BookUpdate(UpdateView):
