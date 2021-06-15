@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Seznam autorů v databázi</h1>
-  {% if author_list %}
-  <ul>
-    {% for author in author_list %}
-      <li>
-          <b class="text-warning">{{ author }}</b>
-      </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+    <div class="container">
+        <h1 class="text-center display-4">Seznam autorů v databázi</h1>
+        {% if author_list %}
+            <table class="table">
+                <tbody>
+                    {% for author in author_list %}
+                        <tr>
+                            <th class="text-warning">{{ author }}</th>
+                            <td class="text-center"><a class="btn bg-danger btn-sm" href="{% url 'author-delete' author.id %}">Smazat</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn bg-warning"  href="{% url 'author-create' %}">Přidat autora</a>
+        {% endif %}
+    </div>
 {% endblock %}

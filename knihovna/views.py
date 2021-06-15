@@ -44,7 +44,9 @@ class GenresListView(generic.ListView):
 class BookCreate(CreateView):
     model = Book
     fields = ['name', 'genre', 'author', 'date', 'pages', 'rate', 'isbn']
-    initial = {'date': '15/06/2020'}
+
+    def get_success_url(self):
+        return reverse_lazy('books')
 
 
 class BookUpdate(UpdateView):
@@ -55,3 +57,39 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('books')
+
+
+class GenreCreate(CreateView):
+    model = Genre
+    fields = ['name']
+
+    def get_success_url(self):
+        return reverse_lazy('genres')
+
+
+class GenreUpdate(UpdateView):
+    model = Genre
+    fields = '__all__'
+
+
+class GenreDelete(DeleteView):
+    model = Genre
+    success_url = reverse_lazy('genres')
+
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = ['name']
+
+    def get_success_url(self):
+        return reverse_lazy('authors')
+
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = '__all__'
+
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')

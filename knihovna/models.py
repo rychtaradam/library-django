@@ -28,7 +28,7 @@ class Book(models.Model):
     name = models.CharField(max_length=150, verbose_name="Název knihy", help_text='Zadejte název knihy.')
     genre = models.ManyToManyField(Genre, help_text="Vyberte žánr knihy.")
     author = models.ManyToManyField(Author, help_text="Vyberte autora knihy.")
-    date = models.DateField(verbose_name="Datum vydání", help_text="Zadejte datum vydání knihy.")
+    date = models.DateField(default="1.1.2021", verbose_name="Datum vydání", help_text="Zadejte datum vydání knihy.")
     pages = models.IntegerField(blank=True, null=True, verbose_name="Počet stran", help_text="Zadejte počet stran.")
     rate = models.FloatField(default=5.0, validators=[MinValueValidator(1.0), MaxValueValidator(10.0)], null=True,
                              help_text="Zadejte hodnocení od 1.0 - 10.0", verbose_name="Hodnocení")

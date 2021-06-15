@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="text-center container">
+        <h1 class="display-4">Smazat knihu</h1>
 
-<h1>Smazat knihu</h1>
+        <p >Jste si jisti, že chcete smazat knihu: <b>{{ book.name }}</b> ?</p>
 
-<p>Jste si jisti, že chcete smazat knihu: {{ book.name }} ?</p>
-
-<form action="" method="POST">
-  {% csrf_token %}
-  <input class="btn bg-danger" type="submit" value="Smazat">
-</form>
-
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input class="btn bg-danger" type="submit" value="Smazat">
+        </form>
+    </div>
 {% endblock %}
