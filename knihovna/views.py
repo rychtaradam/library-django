@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Author
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 def index(request):
@@ -41,55 +43,64 @@ class GenresListView(generic.ListView):
     paginate_by = 10
 
 
-class BookCreate(CreateView):
+class BookCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Book
     fields = ['name', 'genre', 'author', 'date', 'pages', 'rate', 'isbn']
+    permission_required = 'knihovna.can_add_books'
 
     def get_success_url(self):
         return reverse_lazy('books')
 
 
-class BookUpdate(UpdateView):
+class BookUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Book
     fields = '__all__'
+    permission_required = 'knihovna.can_update_books'
 
 
-class BookDelete(DeleteView):
+class BookDelete(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
+    permission_required = 'knihovna.can_delete_books'
 
 
-class GenreCreate(CreateView):
+class GenreCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Genre
     fields = ['name']
+    permission_required = 'knihovna.can_add_genres'
 
     def get_success_url(self):
         return reverse_lazy('genres')
 
 
-class GenreUpdate(UpdateView):
+class GenreUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Genre
     fields = '__all__'
+    permission_required = 'knihovna.can_update_genres'
 
 
-class GenreDelete(DeleteView):
+class GenreDelete(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Genre
     success_url = reverse_lazy('genres')
+    permission_required = 'knihovna.can_delete_genres'
 
 
-class AuthorCreate(CreateView):
+class AuthorCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Author
     fields = ['name']
+    permission_required = 'knihovna.can_add_authors'
 
     def get_success_url(self):
         return reverse_lazy('authors')
 
 
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Author
     fields = '__all__'
+    permission_required = 'knihovna.can_update_authors'
 
 
-class AuthorDelete(DeleteView):
+class AuthorDelete(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
+    permission_required = 'knihovna.can_delete_authors'

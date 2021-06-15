@@ -9,6 +9,8 @@ class Genre(models.Model):
 
     class Meta:
         ordering = ["name"]
+        permissions = (("can_add_genres", "Create a new genre"), ("can_delete_genres", "Delete a genre"),
+                       ("can_update_genres", "Update a genre"),)
 
     def __str__(self):
         return self.name
@@ -19,6 +21,8 @@ class Author(models.Model):
 
     class Meta:
         ordering = ["name"]
+        permissions = (("can_add_authors", "Create a new authors"), ("can_delete_authors", "Delete a authors"),
+                       ("can_update_authors", "Update a authors"),)
 
     def __str__(self):
         return self.name
@@ -36,6 +40,8 @@ class Book(models.Model):
 
     class Meta:
         ordering = ["date", "name"]
+        permissions = (("can_add_books", "Create a new books"), ("can_delete_books", "Delete a books"),
+                       ("can_update_books", "Update a books"),)
 
     def __str__(self):
         return f"{self.name}, Rok vydání: {str(self.date.year)}, Hodnocení: {str(self.rate)}"
