@@ -8,6 +8,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
+def error_404(request, exception):
+    data = {}
+    return render(request, 'error/404.html', data)
+
+
+def error_403(request, exception):
+    data = {}
+    return render(request, 'error/403.html', data)
+
+
 def index(request):
     num_books = Book.objects.all().count()
     books = Book.objects.order_by('-rate')[:3]
