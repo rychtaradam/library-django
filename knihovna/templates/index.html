@@ -5,28 +5,32 @@
     <div class="col-sm-12"> 
         <h2 class="text-center display-4">Nejlépe hodnocené knihy</h2>
     </div> 
-</div> 
-<div class="row">
+</div>
+<div class="row card-deck">
     {% for book in books %}
-    <div class="col-sm-4"> 
-        <div class="card"> 
-            {% if book.poster %}
-            <img class="card-img-top" src="{{ book.poster.url }}" alt="{{ book.name }}">
-            {% endif %} 
-            <div class="card-body"> 
-                <h4 class="card-title">{{ book.name }}</h4>
-                <p class="card-text"><strong>Žánry:</strong>
-                {% for genre in book.genre.all %}{{ genre.name }}{% endfor %}
-                </p>
-                <p class="card-text"><strong>Autor:</strong>
-                {% for author in book.author.all %}{{ author }}{% endfor %}
-                </p>
-                <p><strong>Hodnocení:</strong> {{ book.rate }}</p>
-            </div> 
-        </div> 
-    </div> 
-    {% endfor %} 
-</div> 
+        <div class="card col-med-4">
+            <div class="row no-gutters">
+                {% if book.image %}
+                <div class="col-md-4">
+                    <img class="card-img"  src="{{ book.image.url }}" alt="{{ book.name }}">
+                </div>
+                {% endif %}
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ book.name }}</h4>
+                        <p class="card-text"><strong>Žánry:</strong>
+                        {% for genre in book.genre.all %}{{ genre.name }}{% endfor %}
+                        </p>
+                        <p class="card-text"><strong>Autor:</strong>
+                        {% for author in book.author.all %}{{ author }}{% endfor %}
+                        </p>
+                        <p><strong>Hodnocení:</strong> {{ book.rate }} <i class="bi bi-star-fill"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 <div class="row"> 
     <div class="col-sm-12"> 
         <strong>Celkový počet knih:</strong> {{ num_books }}

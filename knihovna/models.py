@@ -3,6 +3,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 
 
+def img_path(instance, filename):
+    return "images/" + filename
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name="Název žánru",
                             help_text='Zadejte knižní žánr (např. román, komedie)')
@@ -37,6 +41,8 @@ class Book(models.Model):
     rate = models.FloatField(default=5.0, validators=[MinValueValidator(1.0), MaxValueValidator(10.0)], null=True,
                              help_text="Zadejte hodnocení od 1.0 - 10.0", verbose_name="Hodnocení")
     isbn = models.CharField(max_length=17, verbose_name="ISBN", help_text="Zadejte ISBN kód knihy.")
+    image = models.ImageField(help_text="Nahrejte obrázek přebalu knihy", upload_to=img_path, blank=True, null=True,
+                              verbose_name="Fotka")
 
     class Meta:
         ordering = ["date", "name"]

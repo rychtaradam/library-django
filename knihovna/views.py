@@ -45,7 +45,7 @@ class GenresListView(generic.ListView):
 
 class BookCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['name', 'genre', 'author', 'date', 'pages', 'rate', 'isbn']
+    fields = ['name', 'genre', 'author', 'date', 'pages', 'rate', 'isbn', 'image']
     permission_required = 'knihovna.can_add_books'
 
     def get_success_url(self):
